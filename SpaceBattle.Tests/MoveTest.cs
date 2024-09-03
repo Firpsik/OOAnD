@@ -61,8 +61,8 @@ public class MoveTest
         _movable.VerifySet(m => m.Position = new Vector(p0, p1), Times.Once);
     }
 
-    [Then(@"возникает ошибка Exception")]
-    public void ТогдаВозникаетОшибкаException()
+    [Then(@"возникает ошибка Exception в перемещении")]
+    public void ТогдаВозникаетОшибкаExceptionВПеремещении()
     {
         Assert.Throws<Exception>(() => commandExecutionLambda());
     }
