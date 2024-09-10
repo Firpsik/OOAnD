@@ -18,6 +18,6 @@ public class StartRotateCommand : ICommand
         var injectCommand = IoC.Resolve<ICommand>("InjectCommand", rotate_command);
 
         IoC.Resolve<ICommand>("UObject.Register", obj.UObject, "Rotating.Command", rotate_command).Execute();
-        IoC.Resolve<IQueue>("Queue", injectCommand).Add(rotate_command);
+        IoC.Resolve<IQueue>("Queue").Add(injectCommand);
     }
 }
