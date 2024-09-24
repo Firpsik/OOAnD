@@ -2,7 +2,7 @@
 
 namespace SpaceBattle;
 
-public class BuildTreeCommand: ICommand
+public class BuildTreeCommand : ICommand
 {
     private readonly string path;
 
@@ -10,7 +10,7 @@ public class BuildTreeCommand: ICommand
     {
         path = Path;
     }
-    
+
     public void Execute()
     {
         var tree = new Dictionary<int, object>();
@@ -22,7 +22,7 @@ public class BuildTreeCommand: ICommand
             while ((line = reader.ReadLine()) != null)
             {
                 var nums = line.Split().Select(int.Parse).ToList();
-                
+
                 var node = IoC.Resolve<Dictionary<int, object>>("BuildDecisionTree.Command");
 
                 nums.ForEach(num =>

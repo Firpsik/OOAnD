@@ -36,7 +36,7 @@ public class BuildTreeCommandTest
 
         Assert.True(treeNext1.ContainsKey(5));
         var treeNext5 = (Dict)treeNext1[5];
-        
+
         Assert.True(treeNext5.ContainsKey(6));
         var treeNext6 = (Dict)treeNext5[6];
 
