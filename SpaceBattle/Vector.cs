@@ -2,36 +2,42 @@
 
 public class Vector
 {
-    private float X { get; }
-    private float Y { get; }
+    public int[] nums { get; set; }
 
-    public Vector(float x, float y)
+    public Vector(int[] nums)
     {
-        X = x;
-        Y = y;
+        this.nums = nums;
     }
 
-    public static Vector operator +(Vector vector1, Vector vector2)
+    public static Vector operator +(Vector v1, Vector v2)
     {
-        var newX = vector1.X + vector2.X;
-        var newY = vector1.Y + vector2.Y;
-        return new Vector(newX, newY);
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj == null || GetType() != obj.GetType())
         {
-            throw new Exception();
+            if (v1 == null || v2 == null)
+            {
+                throw new ArgumentNullException("Оба вектора должны быть не null");
+            }
+
+            if (v1.nums.Length != v2.nums.Length)
+            {
+                throw new ArgumentException("вектор должен быть той же размерности");
+            }
+
+            return new Vector(v1.nums.Select((num, i) => num + v2.nums[i]).ToArray());
+        }
+    }
+    public override bool Equals(object? obj)
+        {
+            if (obj is Vector vector)
+            {
+                return nums.SequenceEqual(vector.nums);
+            }
+
+            return false;
         }
 
-        var other = (Vector)obj;
-        return GetHashCode() == other.GetHashCode();
-    }
-
     public override int GetHashCode()
-    {
-        return (X.GetHashCode() * 397) ^ Y.GetHashCode();
-    }
+        {
+            return HashCode.Combine(nums);
+        }     
 }
 

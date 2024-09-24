@@ -114,14 +114,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Сравнение двух векторов неверно")]
+        [Xunit.SkippableFactAttribute(DisplayName="Сравнение двух векторов неверно ( разные значения )")]
         [Xunit.TraitAttribute("FeatureTitle", "VectorAction")]
-        [Xunit.TraitAttribute("Description", "Сравнение двух векторов неверно")]
-        public void СравнениеДвухВекторовНеверно()
+        [Xunit.TraitAttribute("Description", "Сравнение двух векторов неверно ( разные значения )")]
+        public void СравнениеДвухВекторовНеверноРазныеЗначения()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Сравнение двух векторов неверно", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Сравнение двух векторов неверно ( разные значения )", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -148,14 +148,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Сравнение двух векторов невозможно")]
+        [Xunit.SkippableFactAttribute(DisplayName="Сравнение двух векторов неверно")]
         [Xunit.TraitAttribute("FeatureTitle", "VectorAction")]
-        [Xunit.TraitAttribute("Description", "Сравнение двух векторов невозможно")]
-        public void СравнениеДвухВекторовНевозможно()
+        [Xunit.TraitAttribute("Description", "Сравнение двух векторов неверно")]
+        public void СравнениеДвухВекторовНеверно()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Сравнение двух векторов невозможно", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Сравнение двух векторов неверно", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -170,12 +170,46 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("первый вектор равен (5, 3)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
 #line 19
- testRunner.And("второй вектор равен null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
+ testRunner.And("второй вектор равен (7)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
 #line 20
  testRunner.When("происходит сравнение векторов", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
 #line 21
+ testRunner.Then("получаем (false)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Сравнение двух векторов невозможно")]
+        [Xunit.TraitAttribute("FeatureTitle", "VectorAction")]
+        [Xunit.TraitAttribute("Description", "Сравнение двух векторов невозможно")]
+        public void СравнениеДвухВекторовНевозможно()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Сравнение двух векторов невозможно", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 23
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 24
+ testRunner.Given("первый вектор равен (5, 3)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
+#line hidden
+#line 25
+ testRunner.And("второй вектор равен null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
+#line hidden
+#line 26
+ testRunner.When("происходит сравнение векторов", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
+#line hidden
+#line 27
  testRunner.Then("возникает ошибка", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }

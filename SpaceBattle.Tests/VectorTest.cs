@@ -5,51 +5,62 @@ namespace SpaceBattle.Tests;
 [Binding]
 public class VectorTest
 {
-    private object v1 = new Vector(0, 0);
-    private object? v2;
-    private bool ans;
-    private Exception? _ex;
+    private Vector? _vector1;
+    private Vector? _vector2;
+    private bool _ans;
+    private Exception? _exception;
 
     [Given(@"первый вектор равен \((.*), (.*)\)")]
     public void GivenFirstVec(int p0, int p1)
     {
-        v1 = new Vector(p0, p1);
+        _vector1 = new Vector(new int[] { p0, p1 });
     }
 
     [Given(@"второй вектор равен \((.*), (.*)\)")]
     public void GivenSecondVector(int p0, int p1)
     {
-        v2 = new Vector(p0, p1);
+        _vector2 = new Vector(new int[] { p0, p1 });
+    }
+
+    [Given(@"второй вектор равен \((.*)\)")]
+    public void GivenSecondVector(int p0)
+    {   
+        _vector2 = new Vector(new int[] { p0 });
     }
 
     [Given(@"второй вектор равен null")]
-    public static void GivenNullVector()
-    {
-
-    }
+    public void GivenNullVector()
+    {      
+        _vector2 = null;   
+    } 
 
     [When(@"происходит сравнение векторов")]
     public void WhenVectorAction()
     {
         try
         {
-            ans = v1.Equals(v2);
+            if (_vector1 == null || _vector2 == null)
+            {
+                throw new ArgumentNullException("Векторы не могут быть null");
+            }
+
+            _ans = _vector1.Equals(_vector2);
         }
         catch (Exception ex)
         {
-            _ex = ex;
+            _exception = ex;
         }
     }
 
-    [Then(@"получаем \((true|false)\)")]
+     [Then(@"получаем \((true|false)\)")]
     public void checkResult(bool expectedResult)
     {
-        Assert.Equal(expectedResult, ans);
+         Assert.Equal(expectedResult, _ans);
     }
 
     [Then(@"возникает ошибка")]
     public void ThrowEx()
     {
-        Assert.IsType<Exception>(_ex);
+        Assert.IsType<ArgumentNullException>(_exception);
     }
 }
