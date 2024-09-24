@@ -24,15 +24,15 @@ public class VectorTest
 
     [Given(@"второй вектор равен \((.*)\)")]
     public void GivenSecondVector(int p0)
-    {   
+    {
         _vector2 = new Vector(new int[] { p0 });
     }
 
     [Given(@"второй вектор равен null")]
     public void GivenNullVector()
-    {      
-        _vector2 = null;   
-    } 
+    {
+        _vector2 = null;
+    }
 
     [When(@"происходит сравнение векторов")]
     public void WhenVectorAction()
@@ -52,10 +52,10 @@ public class VectorTest
         }
     }
 
-     [Then(@"получаем \((true|false)\)")]
+    [Then(@"получаем \((true|false)\)")]
     public void checkResult(bool expectedResult)
     {
-         Assert.Equal(expectedResult, _ans);
+        Assert.Equal(expectedResult, _ans);
     }
 
     [Then(@"возникает ошибка")]

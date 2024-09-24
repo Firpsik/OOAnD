@@ -26,18 +26,18 @@ public class Vector
         }
     }
     public override bool Equals(object? obj)
+    {
+        if (obj is Vector vector)
         {
-            if (obj is Vector vector)
-            {
-                return nums.SequenceEqual(vector.nums);
-            }
-
-            return false;
+            return nums.SequenceEqual(vector.nums);
         }
 
+        return false;
+    }
+
     public override int GetHashCode()
-        {
-            return HashCode.Combine(nums);
-        }     
+    {
+        return HashCode.Combine(nums);
+    }
 }
 
