@@ -2,25 +2,36 @@
 
 namespace SpaceBattle;
 
-public class BuildTreeCommand
+public class BuildTreeCommand: ICommand
 {
-    private readonly ITreeBuildable build;
+    private readonly string path;
 
-    public BuildTreeCommand(ITreeBuildable Build)
+    public BuildTreeCommand(string Path)
     {
-        build = Build;
+        path = Path;
     }
-
+    
     public void Execute()
     {
-        build.Tree().ForEach(nums =>
+        var tree = new Dictionary<int, object>();
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "BuildDecisionTree.Command", (object[] args) => tree).Execute();
+
+        using (var reader = File.OpenText(path))
         {
-            var node = IoC.Resolve<Dictionary<int, object>>("BuildDecisionTree.Command");
-            nums.ForEach(num =>
+            string? line;
+            while ((line = reader.ReadLine()) != null)
             {
-                node.TryAdd(num, new Dictionary<int, object>());
-                node = (Dictionary<int, object>)node[num];
-            });
-        });
+                var nums = line.Split().Select(int.Parse).ToList();
+                
+                var node = IoC.Resolve<Dictionary<int, object>>("BuildDecisionTree.Command");
+
+                nums.ForEach(num =>
+                {
+                    node.TryAdd(num, new Dictionary<int, object>());
+                    node = (Dictionary<int, object>)node[num];
+                });
+
+            }
+        }
     }
 }
