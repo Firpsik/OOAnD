@@ -16,7 +16,7 @@ public class VectorTest
     [Given(@"объект не является вектором")]
     public void GivenObjectIsNotVector()
     {
-        _notVector= new object();
+        _notVector = new object();
     }
 
     [Given(@"первый вектор равен \((.*), (.*)\)")]
@@ -85,22 +85,22 @@ public class VectorTest
     }
 
     [When(@"происходит сложение векторов")]
-        public void WhenVectorsAreAdded()
+    public void WhenVectorsAreAdded()
+    {
+        try
         {
-            try
+            if (_vector1 == null || _vector2 == null)
             {
-                if (_vector1 == null || _vector2 == null)
-                {
-                    throw new ArgumentNullException("Векторы не могут быть null");
-                }
+                throw new ArgumentNullException("Векторы не могут быть null");
+            }
 
-                var result = _vector1 + _vector2;
-            }
-            catch (Exception ex)
-            {
-                _exception = ex;
-            }
+            var result = _vector1 + _vector2;
         }
+        catch (Exception ex)
+        {
+            _exception = ex;
+        }
+    }
 
     [Then(@"хэш-коды векторов равны")]
     public void ThenHashCodesAreEqual()
@@ -129,8 +129,8 @@ public class VectorTest
     [Then(@"получаем исключение")]
     public void ThrowEx()
     {
-        Assert.NotNull(_exception); 
-        Assert.IsType<ArgumentException>(_exception); 
+        Assert.NotNull(_exception);
+        Assert.IsType<ArgumentException>(_exception);
     }
 
     [Then(@"результат равен false")]
