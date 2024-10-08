@@ -12,11 +12,11 @@ public class StartRotateCommand : ICommand
 
     public void Execute()
     {
-        obj.initValues.ToList().ForEach(operation => IoC.Resolve<ICommand>("UObject.Register", obj.UObject, operation.Key, operation.Value).Execute());
+        obj.initValues.ToList().ForEach(o => IoC.Resolve<ICommand>("UObject.Register", obj.UObject, o.Key, o.Value).Execute());
 
-        var rotate_command = IoC.Resolve<ICommand>("Rotating.Command", obj.UObject);
-        var injectCommand = IoC.Resolve<ICommand>("InjectCommand", rotate_command);
+        var rotate_command = IoC.Resolve<ICommand>("Rotate.Command", obj.UObject);
+        var inject_Command = IoC.Resolve<ICommand>("Inject.Command", rotate_command);
 
-        IoC.Resolve<IQueue>("Queue").Add(injectCommand);
+        IoC.Resolve<IQueue>("Queue").Add(inject_Command);
     }
 }
