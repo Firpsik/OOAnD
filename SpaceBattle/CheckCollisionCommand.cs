@@ -1,6 +1,6 @@
-using Hwdtech;
+﻿using Hwdtech;
 
-namespace SpaceBattle.Lib;
+namespace SpaceBattle;
 
 public class CheckCollisionCommand : ICommand
 {
@@ -17,9 +17,7 @@ public class CheckCollisionCommand : ICommand
 
         var collisionTree = IoC.Resolve<IDictionary<int, object>>("Game.CollisionTree");
 
-        var check = IoC.Resolve<bool>("Game.SearchCollision", features, collisionTree);
-
-        if (check)
+        if (IoC.Resolve<bool>("Game.SearchCollision", features, collisionTree))
         {
             IoC.Resolve<ICommand>("Game.CollisionHandler", _firstObject, _secondObject).Execute();
         }
