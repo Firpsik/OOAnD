@@ -77,6 +77,12 @@ public class EndCommandTest
         endMoveCommand.Execute();
 
         mDeletePropertyCommand.Verify(m => m.Execute(), Times.Once);
+
+        mEndable.Object.Move.Execute();
+
+        mCommand.Verify(m => m.Execute(), Times.Never);
+
+        mEmptyCommand.Verify(m => m.Execute(), Times.Once);
     }
 
     [Fact]
