@@ -1,4 +1,4 @@
-namespace SpaceBattle.Lib;
+﻿namespace SpaceBattle.Lib;
 
 public class PositionGenerator
 {
@@ -13,7 +13,7 @@ public class PositionGenerator
         {
             for (var j = 0; j < _countObject[i]; j++)
             {
-                yield return new Vector(i, j);
+                yield return new Vector(new int[] { i, j });
             }
         }
     }
