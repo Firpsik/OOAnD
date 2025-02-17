@@ -1,4 +1,4 @@
-using Hwdtech;
+﻿using Hwdtech;
 
 namespace SpaceBattle.Lib;
 
@@ -17,7 +17,7 @@ public class ShootCommand : ICommand
     }
     public void Execute()
     {
-        var torpedo = IoC.Resolve<IUObject>("Game.Create.Torpedo");
+        var torpedo = IoC.Resolve<IUObject>("Game.Torpedo.Get");
 
         var property = new Dictionary<string, object>()
         {
@@ -25,7 +25,7 @@ public class ShootCommand : ICommand
             {"velocity", _shootable.TorpedoVelocity}
         };
 
-        var order = IoC.Resolve<IUObject>("Generate.Order", torpedo, property);
-        IoC.Resolve<ICommand>("Command.StartMove", order).Execute();
+        var order = IoC.Resolve<IUObject>("Game.Order.Create", torpedo, property);
+        IoC.Resolve<ICommand>("Game.Command.StartMove", order).Execute();
     }
 }
