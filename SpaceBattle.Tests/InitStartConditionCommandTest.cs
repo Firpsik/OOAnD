@@ -30,6 +30,13 @@ public class InitStartConditionCommandTest
             (object[] args) => new PositionGenerator((int[])args[0]).NextPosition()
         ).Execute();
 
+        var volumeFuel = 1;
+        IoC.Resolve<Hwdtech.ICommand>(
+            "IoC.Register",
+            "Game.GetFuelVolume",
+            (object[] args) => (object)volumeFuel
+        ).Execute();
+
     }
     [Fact]
     public void SuccessfullyInitStartConditionGame()
@@ -59,13 +66,6 @@ public class InitStartConditionCommandTest
                     mockCommandSetFuel.Object.Execute();
                 }
             })
-        ).Execute();
-
-        var volumeFuel = 1;
-        IoC.Resolve<Hwdtech.ICommand>(
-            "IoC.Register",
-            "Game.GetFuelVolume",
-            (object[] args) => (object)volumeFuel
         ).Execute();
 
         var initStartConditionCommand = new InitStartConditionCommand(new int[] { 3, 3 });
