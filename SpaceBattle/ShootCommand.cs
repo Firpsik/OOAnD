@@ -1,3 +1,5 @@
+using Hwdtech;
+
 namespace SpaceBattle;
 
 public interface IShootable
@@ -15,6 +17,7 @@ public class ShootCommand : ICommand
     }
     public void Execute()
     {
-
+        var ammo = IoC.Resolve<IUObject>("GetAmmo", _shootable.Position, _shootable.AmmoVelocity);
+        IoC.Resolve<ICommand>("StartRotate", ammo).Execute();
     }
 }
