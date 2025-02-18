@@ -31,7 +31,7 @@ namespace SpaceBattle.Tests
             IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "initDependecies", (object[] args) =>
                 new InitGameDependenciesStrategy().Run(args)).Execute();
 
-            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Queue", (object[] args) => args[1]).Execute();
+            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "QueueAdd", (object[] args) => args[1]).Execute();
 
             var mockAdapterRotable = new Mock<IRotable>();
             var mockAdapterRotateStartable = new Mock<IRotateCommandStartable>();

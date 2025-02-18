@@ -11,6 +11,6 @@ public class RegisterDependencies : ICommand
     public void Execute()
     {
         var initDependenciesCommand = IoC.Resolve<ICommand>("initDependecies");
-        IoC.Resolve<ICommand>("Queue", _gameId, initDependenciesCommand).Execute();
+        IoC.Resolve<ICommand>("QueueAdd", _gameId, initDependenciesCommand).Execute();
     }
 }

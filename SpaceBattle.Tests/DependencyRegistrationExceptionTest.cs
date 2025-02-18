@@ -28,7 +28,7 @@ namespace SpaceBattle.Tests
             var mockQueueAdd = new Mock<ICommand>();
             mockQueueAdd.Setup(m => m.Execute()).Throws(new Exception());
 
-            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Queue", (object[] args) =>
+            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "QueueAdd", (object[] args) =>
                 mockQueueAdd.Object).Execute();
 
             var mockAdapter = new Mock<IRotateCommandStartable>();
