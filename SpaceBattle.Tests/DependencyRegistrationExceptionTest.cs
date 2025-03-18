@@ -23,7 +23,7 @@ namespace SpaceBattle.Tests
             IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "command", (object[] args) => commands).Execute();
 
             IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "initDependecies", (object[] args) =>
-                new InitGameDependenciesStrategy().Run(args)).Execute();
+                new InitGameDependenciesCommand()).Execute();
 
             var mockQueueAdd = new Mock<ICommand>();
             mockQueueAdd.Setup(m => m.Execute()).Throws(new Exception());
@@ -35,10 +35,10 @@ namespace SpaceBattle.Tests
             IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "adapter", (object[] args) =>
                 mockAdapter.Object).Execute();
 
-            var id = Guid.NewGuid();
+            var gameId = 5;
             var mockObj = new Mock<IUObject>();
 
-            var registerDependencies = new RegisterDependencies(id);
+            var registerDependencies = new RegisterDependencies(gameId);
             Assert.Throws<Exception>(() => registerDependencies.Execute());
         }
     }
