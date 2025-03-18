@@ -13,6 +13,7 @@ namespace SpaceBattle.Tests
         public StartRotateCommandTests()
         {
             new InitScopeBasedIoCImplementationCommand().Execute();
+            IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
             rcs = new Mock<IRotateCommandStartable>();
             uobject = new Mock<IUObject>();
             rcs.Setup(r => r.UObject).Returns(uobject.Object);
