@@ -1,4 +1,4 @@
-using Hwdtech;
+﻿using Hwdtech;
 
 namespace SpaceBattle;
 
@@ -8,7 +8,7 @@ public static class DependencyInjection
     {
         _ = type ?? throw new ArgumentNullException(nameof(type));
 
-        var constructor = type.GetConstructors().FirstOrDefault() 
+        var constructor = type.GetConstructors().FirstOrDefault()
             ?? throw new InvalidOperationException($"No public constructors found for type: {type}");
 
         var parameters = constructor.GetParameters()
