@@ -12,7 +12,7 @@ public static class DependencyInjection
             ?? throw new InvalidOperationException($"No public constructors found for type: {type}");
 
         var parameters = constructor.GetParameters()
-            .Select(p => IoC.Resolve<object>($"{p.ParameterType}")).ToArray();
+            .Select(p => IoC.Resolve<object>(p.ParameterType.ToString())).ToArray();
 
         return constructor.Invoke(parameters);
     }

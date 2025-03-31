@@ -33,16 +33,12 @@ namespace SpaceBattle.Tests
             var rotableMock = new Mock<IRotable>().Object;
             var rotateStartableMock = new Mock<IRotateCommandStartable>().Object;
 
-            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", $"{typeof(ICommand)}", (object[] args) => { return commandMock; }).Execute();
-            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", $"{typeof(IRotable)}", (object[] args) => { return rotableMock; }).Execute();
-            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", $"{typeof(IRotateCommandStartable)}", (object[] args) => { return rotateStartableMock; }).Execute();
+            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", $"{typeof(ICommand)}", (object[] args) => commandMock).Execute();
+            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", $"{typeof(IRotable)}", (object[] args) => rotableMock).Execute();
+            IoC.Resolve<Hwdtech.ICommand>("IoC.Register", $"{typeof(IRotateCommandStartable)}", (object[] args) => rotateStartableMock).Execute();
 
             IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "GetInstance",
-            (object[] args) =>
-            {
-                var type = (Type)args[0];
-                return DependencyInjection.GetInstance(type);
-            }).Execute();
+                (object[] args) => DependencyInjection.GetInstance((Type)args[0])).Execute();
 
             var instance = IoC.Resolve<Service>("GetInstance", typeof(Service));
 
@@ -50,6 +46,12 @@ namespace SpaceBattle.Tests
             Assert.Same(commandMock, instance.command);
             Assert.Same(rotableMock, instance.rotable);
             Assert.Same(rotateStartableMock, instance.rotateStartable);
+        }
+
+        [Fact]
+        public void GetInstance_ShouldThrowArgumentNullException_WhenTypeIsNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => DependencyInjection.GetInstance(null!));
         }
     }
 }
