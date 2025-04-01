@@ -53,5 +53,11 @@ namespace SpaceBattle.Tests
         {
             Assert.Throws<ArgumentNullException>(() => DependencyInjection.GetInstance(null!));
         }
+
+        [Fact]
+        public void GetInstance_ShouldThrowInvalidOperationException_WhenNoPublicConstructors()
+        {
+            Assert.Throws<InvalidOperationException>(() => DependencyInjection.GetInstance(typeof(NoPublicConstructorsClass)));
+        }
     }
 }
