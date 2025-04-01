@@ -18,6 +18,11 @@ namespace SpaceBattle.Tests
         }
     }
 
+    internal class NoPublicConstructorsClass
+    {
+        private NoPublicConstructorsClass() { }
+    }
+
     public class DependencyInjectionFeature
     {
         public DependencyInjectionFeature()
